@@ -68,7 +68,7 @@ export class AuthService {
 
     return this.http.post(url, {"account":account, "password": password}, options)//,'csrfmiddleware‌​token':'CSRF-TOKEN-V‌​ALUE'})
                     .map(rsp => that.toUser(rsp))
-                    .catch(err => that.errorHandler(err));
+                    .catch(err => err);
   }
 
   signup(username: string, email: string, password: string): Observable<User> {
@@ -79,7 +79,7 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
     return this.http.post(url, creds, options)
                     .map(rsp => that.toUser(rsp))
-                    .catch(err => that.errorHandler(err));
+                    .catch(err => err);
   }
 
   setLoggedIn(user: User): void {

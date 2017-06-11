@@ -7,6 +7,7 @@ import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 
 import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   providers: [AuthService],
@@ -40,6 +41,9 @@ export class LoginPage {
             }else{
 
             }
+        }, function(error){
+          console.error('An error occurred', error);
+          return Observable.throw(error.message || error);
         });
   }
 

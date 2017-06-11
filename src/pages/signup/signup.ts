@@ -6,7 +6,7 @@ import { Events, NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 
 import { TabsPage } from '../tabs/tabs';
-
+import { Observable } from 'rxjs/Observable';
 @Component({
   providers: [AuthService],
   selector: 'page-user',
@@ -39,6 +39,9 @@ export class SignupPage {
           }else{
 
           }
+        }, function(error){
+          console.error('An error occurred', error);
+          return Observable.throw(error.message || error);
         });
     }
   }
