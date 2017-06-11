@@ -28,7 +28,6 @@ import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
-import { ItemsComponent } from '../components/items/items';
 
 
 @NgModule({
@@ -47,8 +46,7 @@ import { ItemsComponent } from '../components/items/items';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage,
-    ItemsComponent
+    SupportPage
   ],
   imports: [
     BrowserModule,
