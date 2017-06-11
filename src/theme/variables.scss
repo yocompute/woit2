@@ -101,10 +101,32 @@ $desktop: "(min-width: 1024px)";
 
   .auth-form{
     width:360px;
+    margin-left:auto;
+    margin-right:auto;
 
     icon-row{
       padding-left: 11px;
       padding-right: 3px;
+    }
+  }
+
+  ion-nav{
+    width: calc(100% - 100px);
+  }
+
+  ion-menu{
+    width:90px;
+    max-width: 90px !important;
+    min-width: 90px !important;
+
+    ion-content{
+      .scroll-content{
+        overflow-y: hidden !important;
+      }
+    }
+
+    .item-inner{
+      display:none;
     }
   }
 }
