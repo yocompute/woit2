@@ -15,7 +15,6 @@ import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
 import { SessionDetailPage } from '../pages/session-detail/session-detail';
@@ -36,7 +35,6 @@ import { UserData } from '../providers/user-data';
     AboutPage,
     AccountPage,
     LoginPage,
-    MapPage,
     PopoverPage,
     SchedulePage,
     ScheduleFilterPage,
@@ -59,7 +57,6 @@ import { UserData } from '../providers/user-data';
         { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },
         { component: SpeakerListPage, name: 'SpeakerList', segment: 'speakerList' },
         { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:name' },
-        { component: MapPage, name: 'Map', segment: 'map' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
@@ -79,7 +76,6 @@ import { UserData } from '../providers/user-data';
     AboutPage,
     AccountPage,
     LoginPage,
-    MapPage,
     PopoverPage,
     SchedulePage,
     ScheduleFilterPage,

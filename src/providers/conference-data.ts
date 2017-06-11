@@ -146,10 +146,10 @@ export class ConferenceData {
     });
   }
 
-  getMap() {
-    return this.load().map((data: any) => {
-      return data.map;
-    });
-  }
+  // getMap() {
+  //   return this.load().map((data: any) => {
+  //     return data.map;
+  //   });
+  // }
 
 }

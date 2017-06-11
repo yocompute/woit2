@@ -9,11 +9,11 @@ export class User{
 		this.password = password;
 	}
 
-	public toPostJsonStr(csrftoken:string){
-		return JSON.stringify({
-			'csrf_token': csrftoken,
-			'username': this.username, 
-			'password': this.password, 
-			'email':this.email});
-	}
+	// public toPostJsonStr(csrftoken:string){
+	// 	return JSON.stringify({
+	// 		'csrf_token': csrftoken,
+	// 		'username': this.username, 
+	// 		'password': this.password, 
+	// 		'email':this.email});
+	// }
 }
