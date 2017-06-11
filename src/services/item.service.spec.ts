@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import {} from 'jasmine';
 import { TestBed, async, inject } from '@angular/core/testing';
-import { ItemService } from './Item.service';
+import { ItemService } from './item.service';
 
 describe('ItemService', () => {
   beforeEach(() => {

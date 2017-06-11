@@ -5,9 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Events } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-
 import { User } from '../models/user';
 
 @Injectable()
@@ -18,7 +15,7 @@ export class AuthService {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
   APP = 'woit';
 
-  constructor(private http:Http, private storage:Storage) {}
+  constructor(private http:Http) {}
 
   //------------------------------------------------
   // http.get return an RxJS Observable
@@ -68,7 +65,6 @@ export class AuthService {
     //   'Access-Control-Allow-Origin': '*' });
     let that = this;
     let options = new RequestOptions({ headers: headers });
-    let storage = this.storage;
 
     return this.http.post(url, {"account":account, "password": password}, options)//,'csrfmiddleware‌​token':'CSRF-TOKEN-V‌​ALUE'})
                     .map(rsp => that.toUser(rsp))
@@ -87,14 +83,14 @@ export class AuthService {
   }
 
   setLoggedIn(user: User): void {
-    this.storage.set(this.HAS_LOGGED_IN, true);
-    this.storage.set('username', user.username);
+    //this.storage.set(this.HAS_LOGGED_IN, true);
+    //this.storage.set('username', user.username);
     //this.events.publish('user:login');
   };
 
   setLogout(): void {
-    this.storage.remove(this.HAS_LOGGED_IN);
-    this.storage.remove('username');
+    //this.storage.remove(this.HAS_LOGGED_IN);
+    //this.storage.remove('username');
     //this.events.publish('user:logout');
   };
 

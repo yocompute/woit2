@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Events, NavController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
@@ -44,7 +43,7 @@ export class LoginPage {
         });
   }
 
-  // onSignup() {
-  //   this.navCtrl.push(SignupPage);
-  // }
+  onSignup() {
+    this.navCtrl.push(SignupPage);
+  }
 }
