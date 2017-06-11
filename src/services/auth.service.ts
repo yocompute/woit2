@@ -5,49 +5,24 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { Config } from '../config';
 import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
-  private API_URL = 'http://localhost:8000';
-  //private user = new User("","","");
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
-  APP = 'woit';
+  
+  constructor(private http:Http, private cfg:Config) {}
 
-  constructor(private http:Http) {}
-
-  //------------------------------------------------
-  // http.get return an RxJS Observable
-  // getUser(id:number): Promise<User>{
-  //   const url = this.baseUrl + `/users/${id}`;
-  //   return this.http.get(url)
-  //           .toPromise()
-  //           .then(this.getmy)//rsp => rsp.json().data as User)
-  //           .catch(this.getUserError);
-  // }
-
-  // getmy(rsp:any): any{
-  //   return rsp.json().data as User;
-  // }
-
-  // genCSRF():Observable<string>{
-  //   const url = this.baseUrl + `/csrf`;
-  //   return this.http.get(url)
-  //              .map(function(rsp){})
-  //              .catch(this.getUserError)
-  // }
-
-  toUser(rsp:Response){
+  toUser(rsp:Response, cfg: Config){
       var d = rsp.json();
-
-      sessionStorage.setItem('token-'+ this.APP, d.token);
-
+      sessionStorage.setItem('token-'+ cfg.APP, d.token);
       if(d.users){
         var fields = JSON.parse(d.users)[0].fields;
         return new User(fields.username, fields.email);
       }else{
-        return new User('guest','guest@yocompute.com');
+        return new User(cfg.GUEST.username, cfg.GUEST.email);
       }
   }
 
@@ -57,48 +32,45 @@ export class AuthService {
   }
 
   login(account: string, password: string): Observable<User> {
-    const url = this.API_URL + `/login`;
+    const url = this.cfg.API_URL + 'login';
     let headers = new Headers({ 'Content-Type': "application/json"});
     // let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded',//});
     //   //'HTTP_X_CSRFTOKEN':'Jv0qxuTSJdWJHpyRQuNhans7hu86ode0g1nbpx8VNMa3PeaO6a086qrajQQLaXz5',
     //   'X-CSRFToken':'Jv0qxuTSJdWJHpyRQuNhans7hu86ode0g1nbpx8VNMa3PeaO6a086qrajQQLaXz5',
     //   'Access-Control-Allow-Origin': '*' });
-    let that = this;
+    let self = this;
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(url, {"account":account, "password": password}, options)//,'csrfmiddleware‌​token':'CSRF-TOKEN-V‌​ALUE'})
-                    .map(rsp => that.toUser(rsp))
-                    .catch(err => err);
+                    .map(rsp => self.toUser(rsp, self.cfg))
+                    .catch(self.errorHandler);
   }
 
   signup(username: string, email: string, password: string): Observable<User> {
-    const url = this.API_URL + `/signup`;
+    const url = this.cfg.API_URL + 'signup';
     var creds = {"username":username, "email": email, "password": password};
-    let that = this;
+    let self = this;
     let headers = new Headers({ 'Content-Type': "application/json"});
     let options = new RequestOptions({ headers: headers });
     return this.http.post(url, creds, options)
-                    .map(rsp => that.toUser(rsp))
-                    .catch(err => err);
+                    .map(rsp => self.toUser(rsp, self.cfg))
+                    .catch(self.errorHandler);
   }
 
   setLoggedIn(user: User): void {
-    //this.storage.set(this.HAS_LOGGED_IN, true);
-    //this.storage.set('username', user.username);
+    sessionStorage.setItem(this.HAS_LOGGED_IN, 'true');
+    sessionStorage.setItem('username', user.username);
     //this.events.publish('user:login');
   };
 
   setLogout(): void {
-    //this.storage.remove(this.HAS_LOGGED_IN);
-    //this.storage.remove('username');
+    sessionStorage.setItem(this.HAS_LOGGED_IN, '');
+    sessionStorage.setItem('username', '');
     //this.events.publish('user:logout');
   };
 
-
-
-
   resetPassword( email:string ): Observable<string>{
-    const url = this.API_URL + `/resetPassword`;
+    const url = this.cfg.API_URL + 'resetPassword';
     let headers = new Headers({ 'Content-Type': "application/json"});
     let options = new RequestOptions({ headers: headers });
     return this.http.post(url, {"email":email}, options)
