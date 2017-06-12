@@ -30,7 +30,7 @@ export class LoginPage {
 
     this.authService.login(account, password).subscribe(
         function(user){
-            if(user.username){
+            if(user && user.username){
               if (form.valid) {
                 that.authService.setLoggedIn(user);
                 that.events.publish('user:login');

@@ -18,8 +18,8 @@ export class AuthService {
 
   toUser(rsp:Response, cfg: Config, storage: Storage){
       var d = rsp.json();
-      storage.set('token'+ cfg.APP, d.token);
       if(d.users){
+        storage.set('token'+ cfg.APP, d.token);
         var fields = JSON.parse(d.users)[0].fields;
         return new User(fields.username, fields.email);
       }else{

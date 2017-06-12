@@ -29,7 +29,7 @@ export class SignupPage {
     if (form.valid) {
       that.authService.signup(username, email, password).subscribe(
         function(user){
-          if(user.username){
+          if(user && user.username){
             if (form.valid) {
               that.authService.setLoggedIn(user);
               that.events.publish('user:login');
