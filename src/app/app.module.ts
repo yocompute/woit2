@@ -15,6 +15,9 @@ import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
+
+import { ItemListPage } from '../pages/item-list/item-list';
+
 import { SchedulePage } from '../pages/schedule/schedule';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
 import { SessionDetailPage } from '../pages/session-detail/session-detail';
@@ -37,6 +40,7 @@ import { Config } from '../config';
     AccountPage,
     LoginPage,
     PopoverPage,
+    ItemListPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,
@@ -53,6 +57,7 @@ import { Config } from '../config';
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
+        { component: ItemListPage, name: 'ItemList', segment: 'itemList' },
         { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
         { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:name' },
         { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },
@@ -78,6 +83,7 @@ import { Config } from '../config';
     AccountPage,
     LoginPage,
     PopoverPage,
+    ItemListPage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,

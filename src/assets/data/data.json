@@ -1,5 +1,52 @@
 {
 
+        "photos": [{
+            "items": [
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                },
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                },
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                }
+              ]
+            },{
+            "items": [
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                },
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                },
+                {"fields":{
+                    "title": "Meet and Greet",
+                    "description": "8:00 am",
+                    "code": "9:00 am"
+                    }
+                }
+              ]
+            }],
+
+
+
+
   "schedule": [{
     "date": "2047-05-17",
     "groups": [{

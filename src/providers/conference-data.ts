@@ -146,6 +146,11 @@ export class ConferenceData {
     });
   }
 
+  getPhotos() {
+    return this.load().map((data: any) => {
+      return data.photos;
+    });
+  }
   // getMap() {
   //   return this.load().map((data: any) => {
   //     return data.map;

@@ -30,14 +30,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let row of photos">
+      <ion-col *ngFor="let item of row.items">
+
+          <img src="assets/img/appicon.png" class="md-avatar" alt="{{item.fields.title}}" />
+          <div>
+            <h3>{{item.fields.code}}</h3>
+            <h4>{{item.fields.title}}</h4>
+            <div>{{item.fields.description }}</div>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!-- 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-
-
-
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
+  <ion-list #scheduleList [hidden]="shownItems === 0">
 
     <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
 
@@ -47,22 +59,22 @@
         </ion-label>
       </ion-item-divider>
 
-      <ion-item-sliding *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
+      <ion-item-sliding *ngFor="let item of group.items" #slidingItem [attr.track]="item.tracks[0] | lowercase" [hidden]="item.hide">
 
-        <button ion-item (click)="goToSessionDetail(session)">
-          <h3>{{session.name}}</h3>
+        <button ion-item (click)="goToItemDetail(item)">
+          <img src="assets/img/appicon.png" class="md-avatar" alt="{{item.fields.title}}" />
           <p>
-            {{session.timeStart}} &mdash;
-            {{session.timeEnd}}:
-            {{session.location}}
+            <h3>Code:{{item.fields.code}}</h3>
+            <h4>Title:{{item.fields.title}}</h4>
+            <p>{{item.fields.description }}</p>
           </p>
         </button>
 
         <ion-item-options>
-          <button ion-button color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
+          <button ion-button color="favorite" (click)="addFavorite(slidingItem, item)" *ngIf="segment === 'all'">
             Favorite
           </button>
-          <button ion-button color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+          <button ion-button color="danger" (click)="removeFavorite(slidingItem, item, 'Remove Favorite')" *ngIf="segment === 'favorites'">
             Remove
           </button>
         </ion-item-options>
@@ -73,9 +85,9 @@
 
   </ion-list>
 
-  <ion-list-header [hidden]="shownSessions > 0">
-      No Sessions Found
-  </ion-list-header>
+  <ion-list-header [hidden]="shownItems > 0">
+      No Items Found
+  </ion-list-header> -->
 
   <ion-fab bottom right #fab>
     <button ion-fab><ion-icon name="share"></ion-icon></button>
