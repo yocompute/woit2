@@ -30,9 +30,7 @@ export class LoginPage {
 
     this.authService.login(account, password).subscribe(
         function(user){
-            let token = sessionStorage.getItem('token-woit');
-
-            if(token){
+            if(user.username){
               if (form.valid) {
                 that.authService.setLoggedIn(user);
                 that.events.publish('user:login');

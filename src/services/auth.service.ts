@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-
+import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -10,19 +10,20 @@ import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
+
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
   
-  constructor(private http:Http, private cfg:Config) {}
+  constructor(private http:Http, private cfg:Config, private storage: Storage) {}
 
-  toUser(rsp:Response, cfg: Config){
+  toUser(rsp:Response, cfg: Config, storage: Storage){
       var d = rsp.json();
-      sessionStorage.setItem('token-'+ cfg.APP, d.token);
+      storage.set('token'+ cfg.APP, d.token);
       if(d.users){
         var fields = JSON.parse(d.users)[0].fields;
         return new User(fields.username, fields.email);
       }else{
-        return new User(cfg.GUEST.username, cfg.GUEST.email);
+        return null;
       }
   }
 
@@ -42,7 +43,7 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(url, {"account":account, "password": password}, options)//,'csrfmiddleware‌​token':'CSRF-TOKEN-V‌​ALUE'})
-                    .map(rsp => self.toUser(rsp, self.cfg))
+                    .map(rsp => self.toUser(rsp, self.cfg, self.storage))
                     .catch(self.errorHandler);
   }
 
@@ -53,19 +54,19 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': "application/json"});
     let options = new RequestOptions({ headers: headers });
     return this.http.post(url, creds, options)
-                    .map(rsp => self.toUser(rsp, self.cfg))
+                    .map(rsp => self.toUser(rsp, self.cfg, self.storage))
                     .catch(self.errorHandler);
   }
 
   setLoggedIn(user: User): void {
-    sessionStorage.setItem(this.HAS_LOGGED_IN, 'true');
-    sessionStorage.setItem('username', user.username);
+    //sessionStorage.setItem(this.HAS_LOGGED_IN, 'true');
+    //sessionStorage.setItem('username', user.username);
     //this.events.publish('user:login');
   };
 
   setLogout(): void {
-    sessionStorage.setItem(this.HAS_LOGGED_IN, '');
-    sessionStorage.setItem('username', '');
+    //sessionStorage.setItem(this.HAS_LOGGED_IN, '');
+    //sessionStorage.setItem('username', '');
     //this.events.publish('user:logout');
   };
 

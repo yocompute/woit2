@@ -68,7 +68,7 @@ import { Config } from '../config';
     }),
     IonicStorageModule.forRoot({
         name:'woit',
-        driverOrder:['indexeddb']
+        driverOrder:['indexeddb','websql','sqlite']
     })
   ],
   bootstrap: [IonicApp],
