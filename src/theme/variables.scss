@@ -92,7 +92,26 @@ $toolbar-md-active-color:                 #fff;
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $desktop: "(min-width: 1024px)";
 
+.label-m{
+  font-size:16px;
+  color:rgb(0, 0, 0);
+}
+.label-s{
+  font-size:14px;
+  color:rgb(0, 0, 0);
+}
+.text-m{
+  font-size:14px;
+  color:rgb(34, 34, 34);
+}
+.text-s{
+  font-size:12px;
+  color:rgb(34, 34, 34);
+}
+
+
 @media #{$desktop}{
+
   ion-input{
       border: solid 2px #eee;
       padding-left: 12px;

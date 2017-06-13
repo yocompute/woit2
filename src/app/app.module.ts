@@ -32,6 +32,7 @@ import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
 import { Config } from '../config';
+import { TruncatePipe } from '../pipes/truncate';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { Config } from '../config';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

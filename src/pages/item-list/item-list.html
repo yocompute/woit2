@@ -30,15 +30,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid class="item-grid">
     <ion-row *ngFor="let row of photos">
-      <ion-col *ngFor="let item of row.items">
-
-          <img src="assets/img/appicon.png" class="md-avatar" alt="{{item.fields.title}}" />
+      <ion-col *ngFor="let item of row">
           <div>
-            <h3>{{item.fields.code}}</h3>
-            <h4>{{item.fields.title}}</h4>
-            <div>{{item.fields.description }}</div>
+            <div class="image-area">
+              <img src="assets/img/sample.png" class="md-avatar" alt="{{item.title}}" />
+            </div>
+            <div class="text-area">
+              <div class="label-s">{{item.title}}</div>
+              <div class="text-s">{{item.description | truncate : 120 }}</div>
+            </div>
           </div>
       </ion-col>
     </ion-row>
