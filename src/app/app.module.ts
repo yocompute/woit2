@@ -36,7 +36,6 @@ import { UserData } from '../providers/user-data';
 
 import { Config } from '../config';
 import { TruncatePipe } from '../pipes/truncate';
-import { UploaderComponent } from '../components/uploader/uploader';
 
 @NgModule({
   declarations: [
@@ -56,8 +55,7 @@ import { UploaderComponent } from '../components/uploader/uploader';
     TabsPage,
     TutorialPage,
     SupportPage,
-    TruncatePipe,
-    UploaderComponent
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
