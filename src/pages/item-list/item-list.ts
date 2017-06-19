@@ -6,6 +6,8 @@ import { ItemService } from '../../services/item.service';
 import { TruncatePipe } from '../../pipes/truncate';
 //import { ConferenceData } from '../../providers/conference-data';
 
+
+
 @IonicPage()
 @Component({
   providers:[ItemService],
@@ -37,6 +39,4 @@ export class ItemListPage {
 
       return rows;
   }
-
-
 }

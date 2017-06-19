@@ -9,14 +9,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { ConferenceApp } from './app.component';
+import { WoitApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 
-import { ItemListPage } from '../pages/item-list/item-list';
 
 import { SchedulePage } from '../pages/schedule/schedule';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
@@ -24,6 +23,10 @@ import { SessionDetailPage } from '../pages/session-detail/session-detail';
 import { SignupPage } from '../pages/signup/signup';
 import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
+
+import { AddItemPage } from '../pages/add-item/add-item';
+import { ItemListPage } from '../pages/item-list/item-list';
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
@@ -33,14 +36,16 @@ import { UserData } from '../providers/user-data';
 
 import { Config } from '../config';
 import { TruncatePipe } from '../pipes/truncate';
+import { UploaderComponent } from '../components/uploader/uploader';
 
 @NgModule({
   declarations: [
-    ConferenceApp,
+    WoitApp,
     AboutPage,
     AccountPage,
     LoginPage,
     PopoverPage,
+    AddItemPage,
     ItemListPage,
     SchedulePage,
     ScheduleFilterPage,
@@ -51,14 +56,16 @@ import { TruncatePipe } from '../pipes/truncate';
     TabsPage,
     TutorialPage,
     SupportPage,
-    TruncatePipe
+    TruncatePipe,
+    UploaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(ConferenceApp, {}, {
+    IonicModule.forRoot(WoitApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
+        { component: AddItemPage, name: 'AddItem', segment: 'addItem' },
         { component: ItemListPage, name: 'ItemList', segment: 'itemList' },
         { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
         { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:name' },
@@ -80,11 +87,12 @@ import { TruncatePipe } from '../pipes/truncate';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    ConferenceApp,
+    WoitApp,
     AboutPage,
     AccountPage,
     LoginPage,
     PopoverPage,
+    AddItemPage,
     ItemListPage,
     SchedulePage,
     ScheduleFilterPage,

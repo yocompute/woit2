@@ -1,0 +1,51 @@
+<!--
+  Generated template for the AddItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>add-item</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+    <div class="thumbnail">
+        <img alt="Photo" [src]="photo.src" style="width:320px;height:240px;border: 1px solid #eee">
+    </div>
+
+
+        <ion-list no-lines class="upload-form">
+            <ion-item>
+                <ion-label stacked color="primary">Title</ion-label>
+                <ion-input [(ngModel)]="item.title" name="title" type="text" #title="ngModel" required>
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked color="primary">Description</ion-label>
+                <ion-input [(ngModel)]="item.description" name="description" type="text" #description="ngModel" required>
+                </ion-input>
+            </ion-item>
+        </ion-list>
+
+            <div class="row_padding col-md-offset-3 btns">
+                <button type="submit" class="btn btn-success" ng-click="upload_image();">Submit</button>
+                <button type="reset" class="btn btn-default">Cancel</button>
+            </div>
+<!--                 <div class="alert alert-danger" role="alert" hidden>
+                    <strong>Warning!</strong> No Image Selected. Try again!
+                </div>
+
+                <!‐‐ADD A PROGRESS BAR ELEMENT.‐‐>
+                <div class="progress" hidden>
+                    <div id="progress_bar" class="progress-bar progress-bar-success progress-bar-striped active"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div> -->
+</ion-content>

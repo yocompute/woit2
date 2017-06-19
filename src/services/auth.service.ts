@@ -20,8 +20,10 @@ export class AuthService {
       var d = rsp.json();
       if(d.users){
         storage.set('token'+ cfg.APP, d.token);
-        var fields = JSON.parse(d.users)[0].fields;
-        return new User(fields.username, fields.email);
+        var data = JSON.parse(d.users)[0];
+        var id = data.pk;
+        var fields = data.fields;
+        return new User(fields.username, fields.email, "", id);
       }else{
         return null;
       }
@@ -59,6 +61,8 @@ export class AuthService {
   }
 
   setLoggedIn(user: User): void {
+
+    this.storage.set('user'+ this.cfg.APP, user);
     //sessionStorage.setItem(this.HAS_LOGGED_IN, 'true');
     //sessionStorage.setItem('username', user.username);
     //this.events.publish('user:login');
