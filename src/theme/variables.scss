@@ -112,13 +112,23 @@ $desktop: "(min-width: 1024px)";
 
 @media #{$desktop}{
 
-  ion-input{
-      border: solid 2px #eee;
+  ion-input, ion-textarea{
+      border: solid 1px #aaa;
       padding-left: 12px;
       padding-right: 12px;
   }
 
-  .auth-form, .upload-form{
+  .upload-form{
+    width:800px;
+    margin: 0 auto;
+  }
+
+  .upload-block{
+    width:360px;
+    float:left;
+  }
+
+  .auth-form{
     width:360px;
     margin-left:auto;
     margin-right:auto;

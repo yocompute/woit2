@@ -9,6 +9,8 @@ import 'rxjs/add/operator/map';
 import { Config } from '../../config';
 import { User } from '../../models/user';
 import { Item } from '../../models/item';
+
+import { ItemService } from '../../services/item.service';
 /**
  * Generated class for the AddItemPage page.
  *
@@ -17,14 +19,17 @@ import { Item } from '../../models/item';
  */
 @IonicPage()
 @Component({
+  providers: [ItemService],
   selector: 'page-add-item',
   templateUrl: 'add-item.html',
 })
 export class AddItemPage {
   item:Item = new Item();
   photo: any = {'src': ''};
+  file: File;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private http:Http, private cfg:Config, private storage: Storage) {
+  //public navCtrl: NavController, public navParams: NavParams,
+  constructor( private http:Http, private cfg:Config, private storage: Storage, private itemService: ItemService) {
       // fields.title, fields.description, fields.code, fields.dimension, fields.author,
       // fields.type, fields.source, fields.n_copies, fields.fpath, fields.created, fields.updated, fields.owner
       
@@ -71,18 +76,22 @@ export class AddItemPage {
 
 
   fileChange(event:any) {
-        let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
-            let file: File = fileList[0];
-            if (file) {
-              let reader = new FileReader();
-              let self = this;
-              reader.onload = function (e:any) {
-                self.photo.src = e.target.result;
-              }
-              reader.readAsDataURL(file);
-          }    
-        }
+      let fileList: FileList = event.target.files;
+      if(fileList.length > 0) {
+          let file: File = fileList[0];
+          if (file) {
+            let reader = new FileReader();
+            let self = this;
+            reader.onload = function (e:any) {
+              self.photo.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+            this.file = file;
+        }    
+      }
     }
 
+    uploadItem($event:any){
+      this.itemService.saveItem(this.file, this.item);
+    }
 }

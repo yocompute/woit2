@@ -13,32 +13,51 @@
 </ion-header>
 
 
-<ion-content padding>
-
-    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
-    <div class="thumbnail">
-        <img alt="Photo" [src]="photo.src" style="width:320px;height:240px;border: 1px solid #eee">
-    </div>
-
-
-        <ion-list no-lines class="upload-form">
-            <ion-item>
-                <ion-label stacked color="primary">Title</ion-label>
-                <ion-input [(ngModel)]="item.title" name="title" type="text" #title="ngModel" required>
-                </ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label stacked color="primary">Description</ion-label>
-                <ion-input [(ngModel)]="item.description" name="description" type="text" #description="ngModel" required>
-                </ion-input>
-            </ion-item>
-        </ion-list>
-
-            <div class="row_padding col-md-offset-3 btns">
-                <button type="submit" class="btn btn-success" ng-click="upload_image();">Submit</button>
-                <button type="reset" class="btn btn-default">Cancel</button>
+<ion-content padding center>
+    <div class="upload-form">
+        <div col-xs-12 class="upload-block">
+            <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.jpeg">
+            <div class="thumbnail">
+                <img alt="Photo" [src]="photo.src" style="width:320px;height:240px;border: 1px solid #eee">
             </div>
+        </div>
+        <div col-xs-12 class="upload-block">
+            <ion-list no-lines>
+                <ion-item>
+                    <ion-label stacked color="primary">Author</ion-label>
+                    <ion-input [(ngModel)]="item.author" name="author" type="text" #author="ngModel" required>
+                    </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Title</ion-label>
+                    <ion-input [(ngModel)]="item.title" name="title" type="text" #title="ngModel" required>
+                    </ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked color="primary">Description</ion-label>
+                    <ion-textarea [(ngModel)]="item.description" name="description" type="text" #description="ngModel" >
+                    </ion-textarea>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked color="primary">Dimension</ion-label>
+                    <ion-input [(ngModel)]="item.dimension" name="dimension" type="text" #dimension="ngModel" required>
+                    </ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked color="primary">Number of copies</ion-label>
+                    <ion-input [(ngModel)]="item.n_copies" name="n_copies" type="text" #n_copies="ngModel" required>
+                    </ion-input>
+                </ion-item>
+            </ion-list>
+            <div class="row_padding col-md-offset-3 btns">
+                <button ion-button type="submit" class="btn btn-success" (click)="uploadItem($event)">Submit</button>
+                <button ion-button type="reset" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
 <!--                 <div class="alert alert-danger" role="alert" hidden>
                     <strong>Warning!</strong> No Image Selected. Try again!
                 </div>
