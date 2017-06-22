@@ -19,7 +19,7 @@ export class ItemService {
     let headers = new Headers({ 'Content-Type': "application/json"});
     let options = new RequestOptions({ headers: headers });
   	return this.http.get(url, options)
-  		.map(self.extractData)
+  		.map(res => self.extractData(res, self))
   		.catch(self.errorHandler);
   }
 
@@ -28,9 +28,8 @@ export class ItemService {
       fields.type, fields.source, fields.n_copies, fields.fpath, fields.created, fields.updated, fields.owner);
   }
 
-  extractData(res: Response) {
+  extractData(res: Response, self: ItemService) {
     let d = res.json();
-    let self = this;
     let a :Item[] = [];
     if(d.items){
       let items = JSON.parse(d.items);
