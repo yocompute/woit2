@@ -7,9 +7,12 @@ export class Item{
 		public code:string = '',
 		public dimension:string = '',
 		public author:string = '',
-		public type:string = '',		// Photo, Picutre
-		public source:string = '',	// Original, From Market
+		public year:string = '',
+		public type:string = '',		// photo, picutre
+		public source:string = '',		// original, market
+		public style:string = '',		// contemporary, morden
 		public price:number = null,
+		public currency:string = '',	// usd, cad, cny
 		public n_copies: number = null,
 		public fpath:string = null,
 		public created:string = '',
@@ -22,8 +25,12 @@ export class Item{
 		this.code = code;
 		this.dimension = dimension;
 		this.author = author;
+		this.year = year;
 		this.type = type;
 		this.source = source;
+		this.style = style;
+		this.price = this.price;
+		this.currency = this.currency;
 		this.n_copies = n_copies;
 		this.fpath = fpath;
 		this.price = price;

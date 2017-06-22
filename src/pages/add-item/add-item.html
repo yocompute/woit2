@@ -23,11 +23,7 @@
         </div>
         <div col-xs-12 class="upload-block">
             <ion-list no-lines>
-                <ion-item>
-                    <ion-label stacked color="primary">Author</ion-label>
-                    <ion-input [(ngModel)]="item.author" name="author" type="text" #author="ngModel" required>
-                    </ion-input>
-                </ion-item>
+
                 <ion-item>
                     <ion-label stacked color="primary">Title</ion-label>
                     <ion-input [(ngModel)]="item.title" name="title" type="text" #title="ngModel" required>
@@ -45,11 +41,47 @@
                     <ion-input [(ngModel)]="item.dimension" name="dimension" type="text" #dimension="ngModel" required>
                     </ion-input>
                 </ion-item>
-
+                <ion-item>
+                    <ion-label stacked color="primary">Author</ion-label>
+                    <ion-input [(ngModel)]="item.author" name="author" type="text" #author="ngModel" required>
+                    </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Year</ion-label>
+                    <ion-input [(ngModel)]="item.year" name="year" type="text" #year="ngModel" required>
+                    </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Source</ion-label>
+                    <ion-select [(ngModel)]="item.source" name="source" #source="ngModel">
+                        <ion-option value="original">Original</ion-option>
+                        <ion-option value="market">From Market</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Style</ion-label>
+                    <ion-select [(ngModel)]="item.style" name="style" #style="ngModel">
+                        <ion-option value="contemporary">Contemporary</ion-option>
+                        <ion-option value="modern">Modern</ion-option>
+                    </ion-select>
+                </ion-item>
                 <ion-item>
                     <ion-label stacked color="primary">Number of copies</ion-label>
                     <ion-input [(ngModel)]="item.n_copies" name="n_copies" type="text" #n_copies="ngModel" required>
                     </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Price</ion-label>
+                    <ion-input [(ngModel)]="item.price" name="price" type="text" #price="ngModel" required>
+                    </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked color="primary">Currency</ion-label>
+                    <ion-select [(ngModel)]="item.currency" name="currency" #currency="ngModel">
+                        <ion-option value="usd">USD</ion-option>
+                        <ion-option value="cad">CAD</ion-option>
+                        <ion-option value="cny">CNY</ion-option>
+                    </ion-select>
                 </ion-item>
             </ion-list>
             <div class="row_padding col-md-offset-3 btns">

@@ -118,6 +118,13 @@ $desktop: "(min-width: 1024px)";
       padding-right: 12px;
   }
 
+  ion-select{
+    border: solid 1px #aaa;
+    .select-text{
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
   .upload-form{
     width:800px;
     margin: 0 auto;

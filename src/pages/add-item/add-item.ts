@@ -73,8 +73,6 @@ export class AddItemPage {
   //     return ft.upload(src_fpath, endpoint, opts);//.then().catch();
   // }
 
-
-
   fileChange(event:any) {
       let fileList: FileList = event.target.files;
       if(fileList.length > 0) {
@@ -92,6 +90,9 @@ export class AddItemPage {
     }
 
     uploadItem($event:any){
-      this.itemService.saveItem(this.file, this.item);
+      var item = this.item;
+      item.fpath = this.file? (item.owner.username + '/' + this.file.name) : 'sample.png';
+      item.updated = new Date().toLocaleDateString();
+      this.itemService.saveItem(this.file, item);
     }
 }
