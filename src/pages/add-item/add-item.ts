@@ -93,6 +93,8 @@ export class AddItemPage {
       var item = this.item;
       item.fpath = this.file? (item.owner.username + '/' + this.file.name) : 'sample.png';
       item.updated = new Date().toLocaleDateString();
-      this.itemService.saveItem(this.file, item);
+      this.itemService.saveItem(this.file, item).subscribe((data:any)=> function(data:any){
+        
+      });
     }
 }
