@@ -35,7 +35,7 @@
       <ion-col *ngFor="let item of row; let i = index;" col-xs>
           <div>
             <div class="image-area">
-              <img src="assets/img/sample.png" class="md-avatar" alt="{{item.title}}" />
+              <img src={{url}}{{item.fpath}} class="md-avatar" alt="{{item.title}}" />
             </div>
             <div class="text-area">
               <div class="label-s">{{item.title}}</div>

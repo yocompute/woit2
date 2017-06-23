@@ -6,7 +6,7 @@ import { ItemService } from '../../services/item.service';
 import { TruncatePipe } from '../../pipes/truncate';
 //import { ConferenceData } from '../../providers/conference-data';
 
-
+import { Config } from '../../config';
 
 @IonicPage()
 @Component({
@@ -17,9 +17,10 @@ import { TruncatePipe } from '../../pipes/truncate';
 })
 export class ItemListPage {
   photos: any = [];
-
-  constructor( private itemService: ItemService) {
+  url: string;
+  constructor( private itemService: ItemService, private cfg: Config) {
     let self = this;
+    this.url = this.cfg.API_URL + 'media/';
     this.itemService.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
   }
 
