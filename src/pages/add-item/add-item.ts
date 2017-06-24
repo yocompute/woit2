@@ -27,7 +27,7 @@ export class AddItemPage {
   item:Item = new Item();
   photo: any = {'src': ''};
   file: File;
-
+  progress:Number = 0;
   //public navCtrl: NavController, public navParams: NavParams,
   constructor( private http:Http, private cfg:Config, private storage: Storage, private itemService: ItemService) {
       // fields.title, fields.description, fields.code, fields.dimension, fields.author,
@@ -93,8 +93,13 @@ export class AddItemPage {
       var item = this.item;
       item.fpath = this.file? (item.owner.username + '/' + this.file.name) : 'sample.png';
       item.updated = new Date().toLocaleDateString();
-      this.itemService.saveItem(this.file, item).subscribe((data:any)=> function(data:any){
+      // this.itemService.saveItem(this.file, item).subscribe((data:any)=> function(data:any){
         
+      // });
+      var self = this;
+
+      this.itemService.saveItemV2(this.file, item, function(progress:any){
+        self.progress = progress;
       });
     }
 }

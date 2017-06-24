@@ -36,6 +36,7 @@ import { UserData } from '../providers/user-data';
 
 import { Config } from '../config';
 import { TruncatePipe } from '../pipes/truncate';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { TruncatePipe } from '../pipes/truncate';
     TabsPage,
     TutorialPage,
     SupportPage,
-    TruncatePipe
+    TruncatePipe,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

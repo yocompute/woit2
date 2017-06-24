@@ -49,7 +49,7 @@ export class WoitApp {
   appPages: PageInterface[] = [
     // { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     // { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
-    { title: 'Photos', name: 'TabsPage', component: TabsPage, tabComponent: AddItemPage, index: 0, icon: 'cloud-upload' },
+    { title: 'Add Photo', name: 'TabsPage', component: TabsPage, tabComponent: AddItemPage, index: 0, icon: 'cloud-upload' },
     { title: 'Photos', name: 'TabsPage', component: TabsPage, tabComponent: ItemListPage, index: 1, icon: 'albums' },
     { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
   ];
