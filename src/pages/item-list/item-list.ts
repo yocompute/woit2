@@ -18,10 +18,10 @@ import { Config } from '../../config';
 export class ItemListPage {
   photos: any = [];
   url: string;
-  constructor( private itemService: ItemService, private cfg: Config) {
+  constructor( private itemServ: ItemService, private cfg: Config) {
     let self = this;
     this.url = this.cfg.API_URL + 'media/';
-    this.itemService.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
+    this.itemServ.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
   }
 
   toGridData(items:Item[]){

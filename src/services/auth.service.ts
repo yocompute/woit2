@@ -16,23 +16,23 @@ export class AuthService {
   
   constructor(private http:Http, private cfg:Config, private storage: Storage) {}
 
-  toUser(rsp:Response, cfg: Config, storage: Storage){
-      var d = rsp.json();
-      if(d.users){
-        storage.set('token'+ cfg.APP, d.token);
-        var data = JSON.parse(d.users)[0];
-        var id = data.pk;
-        var fields = data.fields;
-        return new User(fields.username, fields.email, "", id);
-      }else{
-        return null;
-      }
-  }
+  hasLoggedIn(): Promise<boolean> {
+    return this.storage.get('user' + this.cfg.APP).then((v:any) =>{
+      return v? true : false;
+    });
+  };
 
-  errorHandler(error:any){
-    console.error('An error occurred', error);
-    return Observable.throw(error.message || error);
-  }
+  hasSeenTutorial(): Promise<string> {
+    return this.storage.get('tutorial' + this.cfg.APP).then((value) => {
+      return value;
+    });
+  };
+
+  getUsername(): Promise<string> {
+    return this.storage.get('user' + this.cfg.APP).then((v:any) =>{
+      return v.username;
+    });
+  };
 
   login(account: string, password: string): Observable<User> {
     const url = this.cfg.API_URL + 'login';
@@ -48,6 +48,10 @@ export class AuthService {
                     .map(rsp => self.toUser(rsp, self.cfg, self.storage))
                     .catch(self.errorHandler);
   }
+
+  logout(): void {
+
+  };
 
   signup(username: string, email: string, password: string): Observable<User> {
     const url = this.cfg.API_URL + 'signup';
@@ -69,8 +73,7 @@ export class AuthService {
   };
 
   setLogout(): void {
-    //sessionStorage.setItem(this.HAS_LOGGED_IN, '');
-    //sessionStorage.setItem('username', '');
+    this.storage.remove('user'+ this.cfg.APP);
     //this.events.publish('user:logout');
   };
 
@@ -82,7 +85,24 @@ export class AuthService {
                     .map(rsp => rsp.json())
                     .catch(err => err);
   }
+  
+  toUser(rsp:Response, cfg: Config, storage: Storage){
+      var d = rsp.json();
+      if(d.users){
+        storage.set('token'+ cfg.APP, d.token);
+        var data = JSON.parse(d.users)[0];
+        var id = data.pk;
+        var fields = data.fields;
+        return new User(fields.username, fields.email, "", id);
+      }else{
+        return null;
+      }
+  }
 
+  errorHandler(error:any){
+    console.error('An error occurred', error);
+    return Observable.throw(error.message || error);
+  }
   // createUser(body:User):Observable<User>{
   //   //let csrfToken = this.getCookie('csrftoken');
   // 	//let s = body.toPostJsonStr(csrfToken);
