@@ -28,6 +28,16 @@ export class AuthService {
     });
   };
 
+  getUser():Promise<User>{
+    return this.storage.get('user' + this.cfg.APP).then(function(v){
+        if(v){
+          return new User(v.username, v.email, '', v.id);
+        }else{
+          return null;
+        }
+      });
+  }
+
   getUsername(): Promise<string> {
     return this.storage.get('user' + this.cfg.APP).then((v:any) =>{
       return v.username;
