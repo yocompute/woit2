@@ -14,6 +14,8 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
+import { SellItemPage } from '../pages/sell-item/sell-item';
+
 import { SupportPage } from '../pages/support/support';
 
 import { FormsModule } from '@angular/forms';
@@ -49,7 +51,8 @@ export class WoitApp {
   appPages: PageInterface[] = [
     { title: 'Add Photo', name: 'TabsPage', component: TabsPage, tabComponent: AddItemPage, index: 0, icon: 'cloud-upload' },
     { title: 'Photos', name: 'TabsPage', component: TabsPage, tabComponent: ItemListPage, index: 1, icon: 'albums' },
-    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
+    { title: 'Sell', name: 'TabsPage', component: TabsPage, tabComponent: SellItemPage, index: 2, icon: 'appstore' },
+    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
 
   loggedInPages: PageInterface[] = [
