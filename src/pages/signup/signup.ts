@@ -16,7 +16,7 @@ export class SignupPage {
   signup: {username?: string, email?:string, password?: string} = {};
   submitted = false;
 
-  constructor(public navCtrl: NavController, private events: Events, private authService: AuthService) {}
+  constructor(public navCtrl: NavController, private events: Events, private authServ: AuthService) {}
 
   onSignup(form: NgForm) {
     this.submitted = true;
@@ -27,11 +27,11 @@ export class SignupPage {
     let email = this.signup.email;
 
     if (form.valid) {
-      that.authService.signup(username, email, password).subscribe(
+      that.authServ.signup(username, email, password).subscribe(
         function(user){
           if(user && user.username){
             if (form.valid) {
-              that.authService.setLoggedIn(user);
+              that.authServ.setLoggedIn(user);
               that.events.publish('user:login');
               that.navCtrl.push(TabsPage);
             }

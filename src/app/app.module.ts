@@ -15,24 +15,13 @@ import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
-
-
-import { SchedulePage } from '../pages/schedule/schedule';
-import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
-import { SessionDetailPage } from '../pages/session-detail/session-detail';
 import { SignupPage } from '../pages/signup/signup';
-import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
-import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
-
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
-
-import { ConferenceData } from '../providers/conference-data';
-import { UserData } from '../providers/user-data';
 
 import { Config } from '../config';
 import { TruncatePipe } from '../pipes/truncate';
@@ -47,12 +36,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     PopoverPage,
     AddItemPage,
     ItemListPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
     TutorialPage,
     SupportPage,
@@ -67,11 +51,6 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
         { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
         { component: AddItemPage, name: 'AddItem', segment: 'addItem' },
         { component: ItemListPage, name: 'ItemList', segment: 'itemList' },
-        { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
-        { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:name' },
-        { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },
-        { component: SpeakerListPage, name: 'SpeakerList', segment: 'speakerList' },
-        { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:name' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
@@ -94,12 +73,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     PopoverPage,
     AddItemPage,
     ItemListPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
     TutorialPage,
     SupportPage
@@ -107,8 +81,6 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Config,
-    ConferenceData,
-    UserData,
     InAppBrowser,
     SplashScreen
   ]

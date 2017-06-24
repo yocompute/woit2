@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 import { AlertController, NavController } from 'ionic-angular';
 
-import { UserData } from '../../providers/user-data';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'page-account',
@@ -12,7 +11,7 @@ import { UserData } from '../../providers/user-data';
 export class AccountPage {
   username: string;
 
-  constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
+  constructor(public alertCtrl: AlertController, public nav: NavController, public Auth: AuthService) {
 
   }
 
@@ -42,7 +41,7 @@ export class AccountPage {
     alert.addButton({
       text: 'Ok',
       handler: (data: any) => {
-        this.userData.setUsername(data.username);
+        //this.userData.setUsername(data.username);
         this.getUsername();
       }
     });
@@ -51,7 +50,7 @@ export class AccountPage {
   }
 
   getUsername() {
-    this.userData.getUsername().then((username) => {
+    this.Auth.getUsername().then((username) => {
       this.username = username;
     });
   }
@@ -61,7 +60,7 @@ export class AccountPage {
   }
 
   logout() {
-    this.userData.logout();
+    this.Auth.logout();
     this.nav.setRoot('LoginPage');
   }
 

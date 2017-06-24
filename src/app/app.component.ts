@@ -11,8 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-//import { SchedulePage } from '../pages/schedule/schedule';
-//import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
+
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
 import { SupportPage } from '../pages/support/support';
@@ -20,8 +19,8 @@ import { SupportPage } from '../pages/support/support';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
-import { ConferenceData } from '../providers/conference-data';
-import { UserData } from '../providers/user-data';
+import { Config } from '../config';
+import { AuthService } from '../services/auth.service';
 
 export interface PageInterface {
   title: string;
@@ -35,6 +34,7 @@ export interface PageInterface {
 }
 
 @Component({
+  providers: [AuthService],
   templateUrl: 'app.template.html'
 })
 
@@ -47,17 +47,17 @@ export class WoitApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    // { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
-    // { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
     { title: 'Add Photo', name: 'TabsPage', component: TabsPage, tabComponent: AddItemPage, index: 0, icon: 'cloud-upload' },
     { title: 'Photos', name: 'TabsPage', component: TabsPage, tabComponent: ItemListPage, index: 1, icon: 'albums' },
     { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
   ];
+
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
     { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
+
   loggedOutPages: PageInterface[] = [
     { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
     { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
@@ -67,16 +67,16 @@ export class WoitApp {
 
   constructor(
     public events: Events,
-    public userData: UserData,
     public menu: MenuController,
     public platform: Platform,
-    public confData: ConferenceData,
     public storage: Storage,
+    private cfg:Config,
+    private authServ: AuthService,
     public splashScreen: SplashScreen
   ) {
 
     // Check if the user has already seen the tutorial
-    this.storage.get('hasSeenTutorial')
+    this.storage.get('tutorial' + this.cfg.APP)
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
           this.rootPage = TabsPage;
@@ -86,11 +86,8 @@ export class WoitApp {
         this.platformReady()
       });
 
-    // load the conference data
-    confData.load();
-
     // decide which menu items should be hidden by current login status stored in local storage
-    this.userData.hasLoggedIn().then((hasLoggedIn) => {
+    this.authServ.hasLoggedIn().then((hasLoggedIn) => {
       this.enableMenu(hasLoggedIn === true);
     });
     this.enableMenu(true);
@@ -122,7 +119,7 @@ export class WoitApp {
 
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
-      this.userData.logout();
+      this.authServ.setLogout();
     }
   }
 
