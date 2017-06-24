@@ -100,6 +100,9 @@ export class AddItemPage {
 
       this.itemService.saveItemV2(this.file, item, function(progress:any){
         self.progress = progress;
+      },
+      function(){
+        //completed callback
       });
     }
 }
