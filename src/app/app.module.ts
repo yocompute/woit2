@@ -17,6 +17,7 @@ import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AddItemPage } from '../pages/add-item/add-item';
+import { SellItemPage } from '../pages/sell-item/sell-item';
 import { ItemListPage } from '../pages/item-list/item-list';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -24,6 +25,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
 import { Config } from '../config';
+import { MainService } from '../services/main.service';
 import { TruncatePipe } from '../pipes/truncate';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
@@ -35,6 +37,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     LoginPage,
     PopoverPage,
     AddItemPage,
+    SellItemPage,
     ItemListPage,
     SignupPage,
     TabsPage,
@@ -50,6 +53,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
         { component: AddItemPage, name: 'AddItem', segment: 'addItem' },
+        { component: SellItemPage, name: 'SellItem', segment: 'sellItem' },
         { component: ItemListPage, name: 'ItemList', segment: 'itemList' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
@@ -72,6 +76,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     LoginPage,
     PopoverPage,
     AddItemPage,
+    SellItemPage,
     ItemListPage,
     SignupPage,
     TabsPage,
@@ -81,6 +86,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Config,
+    MainService,
     InAppBrowser,
     SplashScreen
   ]

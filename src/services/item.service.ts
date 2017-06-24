@@ -1,20 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
+import { MainService } from './main.service';
 import { Config } from '../config';
 import { Item } from '../models/item';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-
+//@Component({
+//   providers: [MainService]
+// })
 @Injectable()
 export class ItemService {
 
-  constructor(private http:Http, private cfg:Config) {}
+  constructor(private http:Http, private cfg:Config, private mainServ:MainService) {}
 
-  getItems():Observable<Item[]>{
-    const url = this.cfg.API_URL + 'items';
+  getMediaRoot(){
+    return this.cfg.API_URL + 'media/';
+  }
+
+  getItems(query?:any):Observable<Item[]>{
+    // query --- json object, eg. {owner_id: 1}
+    const url = this.cfg.API_URL + 'items' + this.mainServ.toQueryStr(query);
     let self = this;
     let headers = new Headers({ 'Content-Type': "application/json"});
     let options = new RequestOptions({ headers: headers });

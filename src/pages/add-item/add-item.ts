@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Config } from '../../config';
+
 import { User } from '../../models/user';
 import { Item } from '../../models/item';
-
+import { AuthService } from '../../services/auth.service';
 import { ItemService } from '../../services/item.service';
 /**
  * Generated class for the AddItemPage page.
@@ -19,7 +17,7 @@ import { ItemService } from '../../services/item.service';
  */
 @IonicPage()
 @Component({
-  providers: [ItemService],
+  providers: [AuthService, ItemService],
   selector: 'page-add-item',
   templateUrl: 'add-item.html',
 })
@@ -29,7 +27,7 @@ export class AddItemPage {
   file: File;
   progress:Number = 0;
   //public navCtrl: NavController, public navParams: NavParams,
-  constructor( private http:Http, private cfg:Config, private storage: Storage, private itemService: ItemService) {
+  constructor( private authServ:AuthService, private itemServ: ItemService ) {
       // fields.title, fields.description, fields.code, fields.dimension, fields.author,
       // fields.type, fields.source, fields.n_copies, fields.fpath, fields.created, fields.updated, fields.owner
       
@@ -45,14 +43,7 @@ export class AddItemPage {
         self.photo.src = img.src;
       }
 
-      this.storage.get('user' + this.cfg.APP).then(function(v){
-        if(v){
-          let user:User = new User(v.username, v.email, '', v.id);
-          self.item.owner = user;
-        }
-
-      });
-      
+      this.authServ.getUser().then((user:any) => self.item.owner = user);      
   }
 
 
@@ -94,11 +85,10 @@ export class AddItemPage {
       item.fpath = this.file? (item.owner.username + '/' + this.file.name) : 'sample.png';
       item.updated = new Date().toLocaleDateString();
       // this.itemService.saveItem(this.file, item).subscribe((data:any)=> function(data:any){
-        
       // });
       var self = this;
 
-      this.itemService.saveItemV2(this.file, item, function(progress:any){
+      this.itemServ.saveItemV2(this.file, item, function(progress:any){
         self.progress = progress;
       },
       function(){
