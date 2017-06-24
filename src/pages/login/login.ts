@@ -20,7 +20,7 @@ export class LoginPage {
   submitted = false;
   token = '';
 
-  constructor(public navCtrl: NavController, private events: Events, private authService: AuthService) {}
+  constructor(public navCtrl: NavController, private events: Events, private authServ: AuthService) {}
 
   onLogin(form: NgForm) {
     this.submitted = true;
@@ -28,11 +28,11 @@ export class LoginPage {
     let account = this.login.account;
     let password = this.login.password;
 
-    this.authService.login(account, password).subscribe(
+    this.authServ.login(account, password).subscribe(
         function(user){
             if(user && user.username){
               if (form.valid) {
-                that.authService.setLoggedIn(user);
+                that.authServ.setLoggedIn(user);
                 that.events.publish('user:login');
                 that.navCtrl.push(TabsPage);
               }
