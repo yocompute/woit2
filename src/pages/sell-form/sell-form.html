@@ -1,0 +1,66 @@
+<!--
+  Generated template for the SellFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>sell-form</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div col-xs-12 class="upload-block">
+        <div class="thumbnail">
+            <img alt="Photo" src="{{photo.src}}" style="width:480px;height:360px;border: 1px solid #eee">
+        </div>
+    </div>
+    <div col-xs-12 class="upload-block">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label stacked color="primary">{{item.title}}&nbsp;{{item.year}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">{{item.description}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">Dimension:{{item.dimension}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">Author:{{item.author}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">{{item.source}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">{{item.style}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">Number of copies</ion-label>
+                <ion-input [(ngModel)]="item.n_copies" name="n_copies" type="text" #n_copies="ngModel" required>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">Price</ion-label>
+                <ion-input [(ngModel)]="item.price" name="price" type="text" #price="ngModel" required>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked color="primary">Currency</ion-label>
+                <ion-select [(ngModel)]="item.currency" name="currency" #currency="ngModel">
+                    <ion-option value="usd">USD</ion-option>
+                    <ion-option value="cad">CAD</ion-option>
+                    <ion-option value="cny">CNY</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+        <div class="row_padding col-md-offset-3 btns">
+            <button ion-button type="submit" class="btn btn-success" (click)="submit($event)">Submit</button>
+            <button ion-button type="reset" class="btn btn-default">Cancel</button>
+        </div>
+    </div>
+</ion-content>

@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AddItemPage } from '../pages/add-item/add-item';
 import { SellItemPage } from '../pages/sell-item/sell-item';
+import { SellFormPage } from '../pages/sell-form/sell-form';
 import { ItemListPage } from '../pages/item-list/item-list';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -38,6 +39,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     PopoverPage,
     AddItemPage,
     SellItemPage,
+    SellFormPage,
     ItemListPage,
     SignupPage,
     TabsPage,
@@ -54,6 +56,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
         { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
         { component: AddItemPage, name: 'AddItem', segment: 'addItem' },
         { component: SellItemPage, name: 'SellItem', segment: 'sellItem' },
+        { component: SellFormPage, name: 'SellForm', segment: 'sellForm' },
         { component: ItemListPage, name: 'ItemList', segment: 'itemList' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
@@ -77,6 +80,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     PopoverPage,
     AddItemPage,
     SellItemPage,
+    SellFormPage,
     ItemListPage,
     SignupPage,
     TabsPage,
