@@ -9,5 +9,6 @@ cordova
 ```
 > npm install -g ionic cordova
 > npm install
-> ionic cordova plugin add cordova-sqlite-storage
+> ionic serve --p 5001
 ```
+It should open a browser display tutorial page for you
