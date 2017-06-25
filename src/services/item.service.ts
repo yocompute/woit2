@@ -32,9 +32,9 @@ export class ItemService {
   }
 
   toItem(fields:any):Item{
-    return new Item(fields.title, fields.description, fields.code, fields.dimension, fields.author, fields.year,
-      fields.type, fields.source, fields.style, fields.price, fields.currency,
-      fields.n_copies, fields.fpath, fields.created, fields.updated, fields.owner);
+    return new Item(fields.title, fields.description, fields.dimension, fields.author, fields.year,
+      fields.type, fields.source, fields.style,
+      fields.n_copies, fields.fpath, fields.created, fields.updated, fields.user);
   }
 
   extractData(res: Response, self: ItemService) {
@@ -60,20 +60,17 @@ export class ItemService {
     let formData:FormData = new FormData();
         formData.append('title', item.title);
         formData.append('description', item.description);
-        formData.append('code', item.code);
         formData.append('dimension', item.dimension);
         formData.append('author', item.author);
         formData.append('year', item.year);
         formData.append('type', 'photo');//item.type);
         formData.append('source', item.source);
         formData.append('style', item.style);
-        formData.append('price', item.price.toString());
-        formData.append('currency', item.currency);
         formData.append('n_copies', item.n_copies.toString());
         formData.append('fpath', item.fpath); // <username>/<file name>
         formData.append('created', item.created);
         formData.append('updated', item.updated);
-        formData.append('owner_id', item.owner.id);      
+        formData.append('user_id', item.user.id);      
         formData.append('file', file, file.name);
 
         // Django
@@ -91,20 +88,17 @@ export class ItemService {
     let formData:FormData = new FormData();
         formData.append('title', item.title);
         formData.append('description', item.description);
-        formData.append('code', item.code);
         formData.append('dimension', item.dimension);
         formData.append('author', item.author);
         formData.append('year', item.year);
         formData.append('type', 'photo');//item.type);
         formData.append('source', item.source);
         formData.append('style', item.style);
-        formData.append('price', item.price.toString());
-        formData.append('currency', item.currency);
         formData.append('n_copies', item.n_copies.toString());
         formData.append('fpath', item.fpath); // <username>/<file name>
         formData.append('created', item.created);
         formData.append('updated', item.updated);
-        formData.append('owner_id', item.owner.id);      
+        formData.append('user_id', item.user.id);      
         formData.append('file', file, file.name);
 
         // Django

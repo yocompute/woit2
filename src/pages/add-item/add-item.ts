@@ -43,7 +43,7 @@ export class AddItemPage {
         self.photo.src = img.src;
       }
 
-      this.authServ.getUser().then((user:any) => self.item.owner = user);      
+      this.authServ.getUser().then((user:any) => self.item.user = user);      
   }
 
 
@@ -82,7 +82,8 @@ export class AddItemPage {
 
     uploadItem($event:any){
       var item = this.item;
-      item.fpath = this.file? (item.owner.username + '/' + this.file.name) : 'sample.png';
+      item.fpath = this.file? (item.user.username + '/' + this.file.name) : 'sample.png';
+      item.n_copies = 0;
       item.updated = new Date().toLocaleDateString();
       // this.itemService.saveItem(this.file, item).subscribe((data:any)=> function(data:any){
       // });
