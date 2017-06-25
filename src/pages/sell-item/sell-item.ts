@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { User } from '../../models/user';
 import { Item } from '../../models/item';
@@ -15,6 +15,8 @@ import { AuthService } from '../../services/auth.service';
 export class SellItemPage {
   photos: any = [];
   url: string;
+  segment: string = "available";
+  user:User;
 
   constructor( private authServ:AuthService, private itemServ: ItemService) {
     let self = this;
@@ -22,8 +24,14 @@ export class SellItemPage {
 
     // Get photos under owner name
     self.authServ.getUser().then( function(user:User){
-      if(user){
-        self.itemServ.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
+      self.user = user;
+
+      if(self.segment == "available"){
+          if(user){
+            self.itemServ.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
+          }else{
+            self.photos = self.toGridData([]);
+          }
       }else{
         self.photos = self.toGridData([]);
       }
@@ -47,4 +55,16 @@ export class SellItemPage {
       return rows;
   }
 
+  setSellTab(){
+    let self = this;
+    if(self.segment == "available"){
+        if(self.user){
+          self.itemServ.getItems().subscribe((data:Item[])=> self.photos = self.toGridData(data));
+        }else{
+          self.photos = self.toGridData([]);
+        }
+    }else{
+      self.photos = self.toGridData([]);
+    }
+  }
 }

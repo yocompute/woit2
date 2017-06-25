@@ -11,21 +11,33 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-grid class="item-grid">
-    <ion-row *ngFor="let row of photos">
-      <ion-col *ngFor="let item of row; let i = index;" col-xs>
-          <div>
-            <div class="image-area">
-              <img src={{url}}{{item.fpath}} class="md-avatar" alt="{{item.title}}" />
-            </div>
-            <div class="text-area">
-              <div class="label-s">{{item.title}}</div>
-              <div class="text-s">{{item.description | truncate : 120 }}</div>
-            </div>
-          </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment" (ionChange)="setSellTab()">
+          <ion-segment-button value="available">
+            Available
+          </ion-segment-button>
+          <ion-segment-button value="crrent">
+            Current
+          </ion-segment-button>
+          <ion-segment-button value="sold">
+            Sold
+          </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-grid class="item-grid">
+        <ion-row *ngFor="let row of photos">
+          <ion-col *ngFor="let item of row; let i = index;" col-xs>
+              <div>
+                <div class="image-area">
+                  <img src={{url}}{{item.fpath}} class="md-avatar" alt="{{item.title}}" />
+                </div>
+                <div class="text-area">
+                  <div class="label-s">{{item.title}}</div>
+                  <div class="text-s">{{item.description | truncate : 120 }}</div>
+                </div>
+              </div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
