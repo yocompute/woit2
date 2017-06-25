@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import { User } from '../../models/user';
 import { Item } from '../../models/item';
 import { ItemService } from '../../services/item.service';
 import { AuthService } from '../../services/auth.service';
+import { SellFormPage } from '../sell-form/sell-form';
+
 
 @IonicPage()
 @Component({
@@ -18,7 +20,7 @@ export class SellItemPage {
   segment: string = "available";
   user:User;
 
-  constructor( private authServ:AuthService, private itemServ: ItemService) {
+  constructor( public navCtrl: NavController, private authServ:AuthService, private itemServ: ItemService) {
     let self = this;
     this.url = this.itemServ.getMediaRoot();
 
@@ -66,5 +68,9 @@ export class SellItemPage {
     }else{
       self.photos = self.toGridData([]);
     }
+  }
+
+  setSell(item:Item){
+    this.navCtrl.push(SellFormPage, {'item':item});
   }
 }

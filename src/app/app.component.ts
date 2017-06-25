@@ -11,11 +11,9 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
 import { SellItemPage } from '../pages/sell-item/sell-item';
-
 import { SupportPage } from '../pages/support/support';
 
 import { FormsModule } from '@angular/forms';

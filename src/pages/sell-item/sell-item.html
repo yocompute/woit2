@@ -35,6 +35,7 @@
                 <div class="text-area">
                   <div class="label-s">{{item.title}}</div>
                   <div class="text-s">{{item.description | truncate : 120 }}</div>
+                  <div class="text-s"><a (click)="setSell(item)" >Sell</a></div>
                 </div>
               </div>
           </ion-col>
