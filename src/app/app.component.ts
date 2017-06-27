@@ -1,3 +1,4 @@
+import { TabsPage } from './../pages/tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
@@ -9,7 +10,6 @@ import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
@@ -64,7 +64,7 @@ export class WoitApp {
     { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
     { title: 'Signup', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
-  rootPage: any;
+  public rootPage: any;
 
   constructor(
     public events: Events,
