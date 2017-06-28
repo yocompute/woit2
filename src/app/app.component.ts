@@ -82,7 +82,7 @@ export class WoitApp {
         if (hasSeenTutorial) {
           this.rootPage = TabsPage;
         } else {
-          this.rootPage = TutorialPage;
+          this.rootPage = TabsPage;
         }
         this.platformReady()
       });
@@ -110,12 +110,31 @@ export class WoitApp {
     // don't setRoot again, this maintains the history stack of the
     // tabs even if changing them from the menu
     if (this.nav.getActiveChildNav() && page.index != undefined) {
-      this.nav.getActiveChildNav().select(page.index);
     // Set the root of the nav with params if it's a tab index
-  } else {
-      this.nav.setRoot(page.name, params).catch((err: any) => {
-        console.log(`Didn't set nav root: ${err}`);
-      });
+        if(this.authServ.hasLoggedIn())
+        {
+            alert('already login')
+            this.nav.getActiveChildNav().select(page.index);
+        }
+        else
+        {
+            alert('not login')
+            this.nav.setRoot(LoginPage);
+        }
+    }
+    else 
+    {
+        if(this.authServ.hasLoggedIn())
+        {
+            alert('already login')
+            this.nav.setRoot(page.name, params).catch((err: any) => {
+            console.log(`Didn't set nav root: ${err}`);});
+        }
+        else
+        {
+            alert('not login')
+            this.nav.setRoot(LoginPage);
+        }
     }
 
     if (page.logsOut === true) {
