@@ -5,6 +5,8 @@ import { NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { AddItemPage } from '../add-item/add-item';
 import { SellItemPage } from '../sell-item/sell-item';
+import { BuyItemPage } from '../buy-item/buy-item';
+
 import { ItemListPage } from '../item-list/item-list';
 
 @Component({
@@ -15,7 +17,9 @@ export class TabsPage {
   tab1Root: any = AddItemPage;
   tab2Root: any = ItemListPage;
   tab3Root: any = SellItemPage;
-  tab4Root: any = AboutPage;
+  tab4Root: any = BuyItemPage;
+  tab5Root: any = AboutPage;
+
 
   mySelectedIndex: number;
 
