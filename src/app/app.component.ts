@@ -90,17 +90,16 @@ export class WoitApp {
       });
 
     // decide which menu items should be hidden by current login status stored in local storage
-    this.authServ.hasLoggedIn().then((hasLoggedIn) => {
-      this.enableMenu(hasLoggedIn === true);
+    this.authServ.hasLoggedIn().then((bLoggedIn) => {
+      this.enableMenu(bLoggedIn);
     });
-    this.enableMenu(true);
 
     this.listenToLoginEvents();
   }
 
   openPage(page: PageInterface) {
     let params = {};
-
+    let nav = this.nav;
     // the nav component was found using @ViewChild(Nav)
     // setRoot on the nav to remove previous pages and only have this page
     // we wouldn't want the back button to show in this scenario
@@ -108,35 +107,36 @@ export class WoitApp {
       params = { tabIndex: page.index };
     }
 
+    if(page.tabComponent == ItemListPage){ // photo list page
+      nav.setRoot(ItemListPage);
+      return; 
+    } 
+
     // If we are already on tabs just change the selected tab
     // don't setRoot again, this maintains the history stack of the
     // tabs even if changing them from the menu
     if (this.nav.getActiveChildNav() && page.index != undefined) {
     // Set the root of the nav with params if it's a tab index
-        if(this.authServ.hasLoggedIn())
-        {
-            alert('already login')
-            this.nav.getActiveChildNav().select(page.index);
-        }
-        else
-        {
-            alert('not login')
-            this.nav.setRoot(LoginPage);
-        }
+        this.authServ.hasLoggedIn().then(function(bLoggedIn){
+          if(bLoggedIn){
+            nav.getActiveChildNav().select(page.index);
+          }
+          else{
+            nav.setRoot(LoginPage);
+          }
+        })
     }
     else 
     {
-        if(this.authServ.hasLoggedIn())
-        {
-            alert('already login')
-            this.nav.setRoot(page.name, params).catch((err: any) => {
+      this.authServ.hasLoggedIn().then(function(bLoggedIn){
+        if(bLoggedIn){
+            nav.setRoot(page.name, params).catch((err: any) => {
             console.log(`Didn't set nav root: ${err}`);});
         }
-        else
-        {
-            alert('not login')
-            this.nav.setRoot(LoginPage);
+        else{
+            nav.setRoot(LoginPage);
         }
+      })
     }
 
     if (page.logsOut === true) {
