@@ -1,3 +1,4 @@
+import { TabsPage } from './../pages/tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
@@ -9,7 +10,6 @@ import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemListPage } from '../pages/item-list/item-list';
@@ -66,7 +66,7 @@ export class WoitApp {
     { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
     { title: 'Signup', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
-  rootPage: any;
+  public rootPage: any;
 
   constructor(
     public events: Events,
@@ -84,7 +84,7 @@ export class WoitApp {
         if (hasSeenTutorial) {
           this.rootPage = TabsPage;
         } else {
-          this.rootPage = TutorialPage;
+          this.rootPage = TabsPage;
         }
         this.platformReady()
       });
@@ -112,12 +112,31 @@ export class WoitApp {
     // don't setRoot again, this maintains the history stack of the
     // tabs even if changing them from the menu
     if (this.nav.getActiveChildNav() && page.index != undefined) {
-      this.nav.getActiveChildNav().select(page.index);
     // Set the root of the nav with params if it's a tab index
-  } else {
-      this.nav.setRoot(page.name, params).catch((err: any) => {
-        console.log(`Didn't set nav root: ${err}`);
-      });
+        if(this.authServ.hasLoggedIn())
+        {
+            alert('already login')
+            this.nav.getActiveChildNav().select(page.index);
+        }
+        else
+        {
+            alert('not login')
+            this.nav.setRoot(LoginPage);
+        }
+    }
+    else 
+    {
+        if(this.authServ.hasLoggedIn())
+        {
+            alert('already login')
+            this.nav.setRoot(page.name, params).catch((err: any) => {
+            console.log(`Didn't set nav root: ${err}`);});
+        }
+        else
+        {
+            alert('not login')
+            this.nav.setRoot(LoginPage);
+        }
     }
 
     if (page.logsOut === true) {
